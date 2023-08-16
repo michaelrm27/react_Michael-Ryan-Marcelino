@@ -3,5 +3,3 @@
 2. Bahasa yang digunakan front end kebanyakan menggunakan HTML, CSS, dan Javascript. Ketiga bahasa tersebut sangat populer dalam merancang tampilan website.
 
 3. Agar website kita dapat diakses oleh semua orang dari berbagai tempat kita membutuhkan Domain serta server untung melakukan hosting. Dalam melakukan hosting ada yang berbayar dan gratis yang tentunya memiliki perbedaan dalam peformanya
-
-4. asdjhkhkahdkfuhkauh
