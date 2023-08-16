@@ -4,4 +4,4 @@
 
 3. Agar website kita dapat diakses oleh semua orang dari berbagai tempat kita membutuhkan Domain serta server untung melakukan hosting. Dalam melakukan hosting ada yang berbayar dan gratis yang tentunya memiliki perbedaan dalam peformanya
 
-4. 
+4. asdjhkhkahdkfuhkauh
