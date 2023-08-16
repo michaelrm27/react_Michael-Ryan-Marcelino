@@ -7,3 +7,5 @@
 4. Dengan menggunakan git developer bisa melihat dokumentasi code mereka secara lengkap
 
 5. Git menyediakan fitur yang dinamakan branch. Fitur ini berguna agar code yang masih belum selesai atau berisi bug dan belum di testing bisa masuk dulu ke branch lain selain branch main agar tidak mengganggu bracnh utama tersebut
+
+** Folder Kosong Tidak Terlihat di Github tetapi ada di VSCODE **
