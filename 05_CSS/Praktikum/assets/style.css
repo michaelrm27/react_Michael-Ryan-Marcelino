@@ -31,6 +31,7 @@
 }
 
 .btn-started {
+  cursor: pointer;
   width: 120px;
   height: 40px;
   border-radius: 50px;
@@ -44,7 +45,13 @@
   margin-top: 2rem;
 }
 
+.btn-started:hover{
+  background-color: white;
+  color: #37517e;
+}
+
 .btn-watch {
+  cursor: pointer;
   background-color: transparent;
   color: white;
   border: none;
@@ -92,6 +99,7 @@
 }
 
 .btn-subs {
+  cursor: pointer;
   width: 113px;
   height: 46px;
   background-color: #47b2e4;
@@ -104,6 +112,10 @@
   position: relative;
   left: -5rem;
   top: 2px;
+}
+
+.btn-subs:hover {
+  background-color: #37517e;
 }
 
 .footer1-container {
