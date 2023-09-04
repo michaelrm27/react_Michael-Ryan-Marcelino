@@ -39,11 +39,14 @@ function validate() {
 }
 form.addEventListener("submit", (e) => {
   if (!validate()) {
-    e.preventDefault(); // Mencegah pengiriman formulir jika validasi gagal
+    e.preventDefault();
+  }else {
+    insert(e);
+    form.reset();
   }
 });
 
-document.getElementById('form').addEventListener('submit', insert);
+// document.getElementById('form').addEventListener('submit', insert);
 const products = [];
 
 function insert(event) {
