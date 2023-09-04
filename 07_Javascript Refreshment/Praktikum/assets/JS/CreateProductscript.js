@@ -25,7 +25,7 @@ function validate() {
   } else if (formFile.files.length === 0) {
     alert("Product image field must be filled in");
     return false;
-  } else if (!selected) {
+  } else if (!Freshness) {
     alert("Product freshness field must be filled in");
     return false;
   } else if (textarea.value === "" || textarea.value == null) {
@@ -37,3 +37,9 @@ function validate() {
   }
   return true;
 }
+
+form.addEventListener ("submit", (e) => {
+  if(validate() == false) {
+    e.preventDefault();
+  }
+})
