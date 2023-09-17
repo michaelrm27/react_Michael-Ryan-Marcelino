@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Table() {
+export default function Table({tableData}) {
   return (
     <>
       <div className="container table mt-lg-5">
@@ -16,7 +16,19 @@ export default function Table() {
               <th scope="col">Product Price</th>
             </tr>
           </thead>
-          <tbody id="tablebody" />
+          <tbody id="tablebody">
+            {tableData.map((data, index) => (
+              <tr key={index}>
+                <td>{data.id}</td>
+                <td>{data.name}</td>
+                <td>{data.category}</td>
+                <td>{data.image}</td>
+                <td>{data.freshness}</td>
+                <td>{data.desc}</td>
+                <td>{data.price}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </>
