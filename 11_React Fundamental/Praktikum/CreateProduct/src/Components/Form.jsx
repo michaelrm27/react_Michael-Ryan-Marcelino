@@ -32,25 +32,46 @@ export default function Form({ addData }) {
   }
 
   function handleSubmit(event) {
+    event.preventDefault();
+
     if (!handleValidation()) {
-      event.prefentDefault();
+      return;
     } else {
-      alert("Form Submitted");
+      alert ("form Submitted")
       const newData = {
-        productName:productName,
-        productcategory:productcategory,
-        productImage:productImage,
-        productFreshness:productFreshness,
-        productDesc:productDesc,
-        productPrice:productPrice
+        productName: productName,
+        productCategory: productcategory,
+        productImage: productImage,
+        productFreshness: productFreshness,
+        productDesc: productDesc,
+        productPrice: productPrice,
       };
-      addData(newData);
-      setProductName('')
-      setProductCategory('')
-      setProductImage('')
-      setProductFreshness('')
-      setProductDesc('')
-      setProductPrice('')
+
+      const tableBody = document.getElementById("tablebody");
+      const newRow = tableBody.insertRow();
+
+      const cellIndex = newRow.insertCell(0);
+      const cellName = newRow.insertCell(1);
+      const cellCategory = newRow.insertCell(2);
+      const cellImage = newRow.insertCell(3);
+      const cellFreshness = newRow.insertCell(4);
+      const cellDescription = newRow.insertCell(5);
+      const cellPrice = newRow.insertCell(6);
+
+      cellIndex.innerHTML = tableBody.rows.length;
+      cellName.innerHTML = productName;
+      cellCategory.innerHTML = productcategory;
+      cellImage.innerHTML = `<img src="${productImage}" alt="${productName}" width="50">`;
+      cellFreshness.innerHTML = productFreshness;
+      cellDescription.innerHTML = productDesc;
+      cellPrice.innerHTML = productPrice;
+
+      setProductName("");
+      setProductCategory("");
+      setProductImage("");
+      setProductFreshness("");
+      setProductDesc("");
+      setProductPrice("");
 
       event.target.reset();
     }
@@ -127,6 +148,22 @@ export default function Form({ addData }) {
             </button>
           </div>
         </form>
+        <div className="container table mt-lg-5">
+          <table className="table table-striped-columns" id="tableinput">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Image of Product</th>
+                <th scope="col">Product Freshness</th>
+                <th scope="col">Additional Description</th>
+                <th scope="col">Product Price</th>
+              </tr>
+            </thead>
+            <tbody id="tablebody" />
+          </table>
+        </div>
       </div>
     </>
   );
