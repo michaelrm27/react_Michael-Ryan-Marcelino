@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import article from "./Article";
 
 export default function Header() {
+  const [currentLangae, setCurrentLanguage] = useState("en")
+
+  const langText = {
+    en: {
+      title: article.title.en,
+      description: article.description.en,
+      buttonText:"Switch to Bahasa Indonesia"
+    },
+    id: {
+      title: article.title.id,
+      description: article.description.id,
+      buttonText: "Switch to English"
+    }
+
+  }
+
+  function handleToggle() {
+    // Tidak perlu parameter currentLangae di sini
+    const newLanguage = currentLangae === 'en' ? 'id' : 'en';
+    setCurrentLanguage(newLanguage); // Perbarui currentLangae dengan newLanguage
+  }
+
+
   return (
     <>
     <div className="container p-lg-5">
@@ -8,10 +32,15 @@ export default function Header() {
         <img src="image/bootstrap-logo.svg.png" alt="logo" />
       </div>
       <div className="text-center mt-lg-3">
-        <p className="fw-medium fs-3">Create Product</p>
-        <p className="text-secondary-emphasis fs-4">
-          Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.
+        <p className="text-secondary-emphasis fs-4 fw-bold">
+          {langText[currentLangae].title}
         </p>
+        <p className="text-secondary-emphasis fs-4">
+          {langText[currentLangae].description}
+        </p>
+        <button onClick={handleToggle}>
+          {langText[currentLangae].buttonText}
+        </button>
       </div>
     </div>
     </>
