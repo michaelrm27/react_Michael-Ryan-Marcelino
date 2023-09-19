@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function handleRandomNumber() {
   const number = Math.random() * 10;
@@ -21,6 +21,8 @@ export default function Form({ addData }) {
     productDesc: "",
     productPrice: "",
   });
+
+ 
 
   function handleValidation() {
     const newErrors = {
@@ -119,7 +121,7 @@ export default function Form({ addData }) {
               id="productname"
               style={{ width: 280 }}
               onChange={(e) => {
-              setProductName(e.target.value);
+                setProductName(e.target.value);
               }}
             />
             {errors.productName && <div className="text-danger">{errors.productName}</div>}
@@ -128,7 +130,15 @@ export default function Form({ addData }) {
             <label htmlFor="" className="form-label">
               Product Category
             </label>
-            <select className="form-select" name="" id="productcategory" style={{ width: 280 }} onChange={(e) => {setProductCategory(e.target.value);}}>
+            <select
+              className="form-select"
+              name=""
+              id="productcategory"
+              style={{ width: 280 }}
+              onChange={(e) => {
+                setProductCategory(e.target.value);
+              }}
+            >
               <option selected="" disabled="" value="">
                 Choose...
               </option>
@@ -142,7 +152,15 @@ export default function Form({ addData }) {
             <label htmlFor="formFile" className="form-label">
               Image of Product
             </label>
-            <input className="form-control" type="file" id="formFile" style={{ width: 280 }} onChange={(e) => {setProductImage(e.target.value);}} />
+            <input
+              className="form-control"
+              type="file"
+              id="formFile"
+              style={{ width: 280 }}
+              onChange={(e) => {
+                setProductImage(e.target.value);
+              }}
+            />
             {errors.productImage && <div className="text-danger">{errors.productImage}</div>}
           </div>
           <div className="">
@@ -153,17 +171,44 @@ export default function Form({ addData }) {
           <div className="form-check" name="formcheck" id="radio">
             <label className="form-check-label active">
               {" "}
-              <input className="form-check-input" type="radio" name="Freshness" defaultValue="brandnew" onChange={(e) => {setProductFreshness(e.target.value);}} /> Brand New{" "}
+              <input
+                className="form-check-input"
+                type="radio"
+                name="Freshness"
+                defaultValue="brandnew"
+                onChange={(e) => {
+                  setProductFreshness(e.target.value);
+                }}
+              />{" "}
+              Brand New{" "}
             </label>{" "}
             <br />
             <label className="form-check-label">
               {" "}
-              <input className="form-check-input" type="radio" name="Freshness" defaultValue="secondhand" onChange={(e) => {setProductFreshness(e.target.value);}} /> Second Hand{" "}
+              <input
+                className="form-check-input"
+                type="radio"
+                name="Freshness"
+                defaultValue="secondhand"
+                onChange={(e) => {
+                  setProductFreshness(e.target.value);
+                }}
+              />{" "}
+              Second Hand{" "}
             </label>{" "}
             <br />
             <label className="form-check-label">
               {" "}
-              <input className="form-check-input" type="radio" name="Freshness" defaultValue="refurbished" onChange={(e) => {setProductFreshness(e.target.value);}} /> Refurbished{" "}
+              <input
+                className="form-check-input"
+                type="radio"
+                name="Freshness"
+                defaultValue="refurbished"
+                onChange={(e) => {
+                  setProductFreshness(e.target.value);
+                }}
+              />{" "}
+              Refurbished{" "}
             </label>
             {errors.productFreshness && <div className="text-danger">{errors.productFreshness}</div>}
           </div>
@@ -171,7 +216,16 @@ export default function Form({ addData }) {
             <label htmlFor="exampleFormControlTextarea1" className="form-label">
               Additional Description
             </label>
-            <textarea className="form-control w-50" id="textarea" rows={5} placeholder="Description of the product" defaultValue={""} onChange={(e) => {setProductDesc(e.target.value);}} />
+            <textarea
+              className="form-control w-50"
+              id="textarea"
+              rows={5}
+              placeholder="Description of the product"
+              defaultValue={""}
+              onChange={(e) => {
+                setProductDesc(e.target.value);
+              }}
+            />
             {errors.productDesc && <div className="text-danger">{errors.productDesc}</div>}
           </div>
           <div className="mt-lg-5">
@@ -180,9 +234,18 @@ export default function Form({ addData }) {
             </label>
           </div>
           <div className="input-group mb-3 w-50">
-            <input type="text" className="form-control" id="productprice" aria-label="Amount (to the nearest dollar)" placeholder="$" onChange={(e) => {setProductPrice(e.target.value);}} />
+            <input
+              type="text"
+              className="form-control"
+              id="productprice"
+              aria-label="Amount (to the nearest dollar)"
+              placeholder="$"
+              onChange={(e) => {
+                setProductPrice(e.target.value);
+              }}
+            />
           </div>
-            {errors.productPrice && <div className="text-danger">{errors.productPrice}</div>}
+          {errors.productPrice && <div className="text-danger">{errors.productPrice}</div>}
           <div className="d-flex justify-content-center mt-lg-5">
             <button className="btn btn-primary w-50" type="submit">
               Submit
