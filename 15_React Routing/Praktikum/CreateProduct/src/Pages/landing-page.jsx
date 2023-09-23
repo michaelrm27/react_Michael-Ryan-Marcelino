@@ -5,124 +5,110 @@ import { useNavigate } from "react-router-dom";
 function Page() {
   const navigate = useNavigate()
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand fw-medium" href="#">
-            Simple Header
-          </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <a className="nav-link active bg-primary text-light" aria-current="page" href="#">
+    <>
+    <div className="bg">
+      <nav className="navbar navbar-expand-lg navbar-dark shadow-5-strong pt-4">
+        <div className="container-fluid ps-5">
+          <p className="fw-bold text-primary">MICHAEL</p>
+          <p className="fw-light text-dark-emphasis">Ryan</p>
+          <div
+            className="collapse navbar-collapse justify-content-end pe-5"
+            id="navbarNavAltMarkup"
+          >
+            <div className="navbar-nav gap-5">
+              <a className="nav-link active" aria-current="page" onClick={() => navigate('/')}>
                 Home
               </a>
-              <a className="nav-link text-primary" href="#">
-                Features
+              <a className="nav-link active" aria-current="page" href="#">
+                Products
               </a>
-              <a className="nav-link text-primary" href="#">
-                Pricing
+              <a className="nav-link active" aria-current="page" href="#">
+                About
               </a>
-              <a className="nav-link text-primary">FAQs</a>
-              <a className="nav-link text-primary">About</a>
+              <a
+                className="nav-link active"
+                aria-current="page"
+                href="../project/contact.html"
+              >
+                Contacs
+              </a>
             </div>
           </div>
         </div>
       </nav>
-      <div className="hero-container">
-        <div className="hero-head">
-          <p className="hero-heading">Better Solutions For Your Bussiness</p>
-          <p className="hero-paragraph">We are team of talented designers making websites with bootstrap</p>
-          <button className="btn-started">Get Started</button>
-          <button className="btn-watch">Watch Video</button>
-          <div className="mt-3">
-            <button className="btn btn-primary rounded-5" onClick={() => navigate("/")}>Create Product</button>
-          </div>
+      {/* Welcome */}
+      <div className="content">
+        <div className="container text-light text-center">
+          <p className="display-5 fw-bold">WELCOME TO MY WEBSITE</p>
+          <p className="fw-light">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            eos ullam est dolor architecto blanditiis.
+          </p>
+          <button className="btn btn-info mt-4">Get Started</button>
         </div>
-        <div className="hero-img">
-          <img src="assets/hero-img.png.png" alt="image" />
-        </div>
-      </div>
-      <div className="news-container">
-        <p className="news-heading">Join Our Newsletter</p>
-        <p className="news-paragraph">Tamen quem nulla quae muitos aute sint cuipa legam noster magna</p>
-        <div className="news-subs">
-          <input type="text" className="text-input" />
-          <button className="btn-subs">Subscribe</button>
-        </div>
-      </div>
-      <div className="footer1-container">
-        <div className="address-container">
-          <p className="address-heading">ARSHA</p>
-          <p className="address-paragraph">A108 Adam Street</p>
-          <p className="address-paragraph2">New York, NY 535022</p>
-          <p className="address-paragraph2">United States</p>
-          <div className="contact">
-            <p>
-              <strong>Phone:</strong> +1 5589 55488 55
-            </p>
-            <p>
-              <strong>Email:</strong> info@example.com
-            </p>
-          </div>
-        </div>
-        <div className="links-container">
-          <p>Useful Links</p>
-          <ul>
-            <li>
-              <a href="">Home</a>
-            </li>
-            <li>
-              <a href="">About Us</a>
-            </li>
-            <li>
-              <a href="">Services</a>
-            </li>
-            <li>
-              <a href="">Terms of service</a>
-            </li>
-            <li>
-              <a href="">Privacy policy</a>
-            </li>
-          </ul>
-        </div>
-        <div className="services-container">
-          <p>Our Services</p>
-          <ul>
-            <li>
-              <a href="">Web Design</a>
-            </li>
-            <li>
-              <a href="">Web Development</a>
-            </li>
-            <li>
-              <a href="">Product Management</a>
-            </li>
-            <li>
-              <a href="">Marketing</a>
-            </li>
-            <li>
-              <a href="">Graphic Design</a>
-            </li>
-          </ul>
-        </div>
-        <div className="social-container">
-          <p className="social-heading">Our Social Networks</p>
-          <p className="social-paragraph">Cras fermentum odio eu feugiat lide par naso tierra vieda magna derita valles</p>
-          <div className="social-image">
-            <img src="assets/a.png" alt="" />
-            <img src="assets/a.png" alt="" />
-            <img src="assets/a.png" alt="" />
-            <img src="assets/a.png" alt="" />
-            <img src="assets/a.png" alt="" />
-          </div>
-        </div>
-      </div>
-      <div className="footer">
-        <p>© Copyright</p>
       </div>
     </div>
+    <div className="card bg-dark text-white">
+      <div className="card-header d-flex">
+        <p className="fw-bold text-primary">MICHAEL</p>
+        <p className="fw-light text-dark-emphasis">Ryan</p>
+      </div>
+      <div className="card-body mt-2">
+        <div className="row">
+          <div className="col-4">
+            <h5 className="mb-3">
+              Join 16.000+ people who gets our website tips twice a month
+            </h5>
+            <label htmlFor="exampleInputEmail1" className="form-label">
+              Email address
+            </label>
+            <input
+              style={{ width: 300 }}
+              type="email"
+              className="form-control rounded-5"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" className="form-text text-white">
+              We'll never share your email with anyone else.
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+            <div className="mt-3">
+              <a className="me-3" href="" style={{ textDecoration: "none" }}>
+                <i className="bi bi-instagram" style={{ fontSize: "2rem" }} />
+              </a>
+              <a className="me-3" href="" style={{ textDecoration: "none" }}>
+                <i className="bi bi-linkedin" style={{ fontSize: "2rem" }} />
+              </a>
+              <a className="me-3" href="" style={{ textDecoration: "none" }}>
+                <i className="bi bi-facebook" style={{ fontSize: "2rem" }} />
+              </a>
+            </div>
+          </div>
+          <div className="col-4 text-white text-center">
+            <h5>Chicago Community Member</h5>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius, in.
+              Ad, qui modi eos praesentium minima maxime asperiores et ipsum!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure
+              consequuntur reprehenderit quibusdam. Qui voluptates voluptatum id,
+              nulla iusto eligendi dolor. Ipsum voluptatibus debitis, harum fugit
+              expedita non porro reprehenderit aliquam.
+            </p>
+          </div>
+          <div className="col-4 text-white text-center">
+            <h5>Come Visit Us</h5>
+            <p>50229</p>
+            <p>Taman Siswa</p>
+            <p className="fw-bold">Semarang</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>  
   );
 } export default Page
