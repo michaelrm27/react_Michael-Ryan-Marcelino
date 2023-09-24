@@ -16,9 +16,9 @@ function Page() {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav gap-5">
-              <a className="nav-link active" aria-current="page" onClick={() => navigate('/')}>
+              <button className="btn btn-primary btn-sm active" aria-current="page" onClick={() => navigate('/')}>
                 Home
-              </a>
+              </button>
               <a className="nav-link active" aria-current="page" href="#">
                 Products
               </a>

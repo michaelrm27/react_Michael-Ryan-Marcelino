@@ -254,7 +254,7 @@ export default function Form({ addData }) {
           <button className="btn btn-dark" type="button" onClick={handleRandomNumber}>
             Random Number
           </button>
-          <button className="btn btn-dark" onClick={() => navigate("/lading-page")}>Landing Page</button>
+          <button className="btn btn-dark" onClick={() => navigate("/landing-page")}>Landing Page</button>
         </div>
         <div className="container table mt-lg-5">
           <table className="table table-striped-columns" id="tableinput">
