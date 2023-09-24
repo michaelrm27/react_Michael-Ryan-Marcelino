@@ -2,23 +2,20 @@ import { useState } from "react";
 import "./App.css";
 import Form from "./Pages/create-product";
 import Page from "./Pages/landing-page";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Detail from "./Pages/ProductDetail";
+import { ProductProvider } from "./Pages/ProductContext";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-export default function Router() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Form />,
-    },
-    {
-      path: "/lading-page",
-      element: <Page />,
-    },
-    {
-      path: "*",
-      element: "404 Error Not Found",
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
+export default function App(){
+  return (
+    <Router>
+      <ProductProvider>
+        <Routes>
+          <Route path="/" element={<Form />} />
+          <Route path="/landing-page" element={<Page />} />
+          <Route path="/detail/:id" element={<Detail />} />
+        </Routes>
+      </ProductProvider>
+    </Router>
+  )
 }

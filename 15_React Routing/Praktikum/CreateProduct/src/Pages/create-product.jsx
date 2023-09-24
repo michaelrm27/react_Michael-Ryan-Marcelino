@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Navbar from "../Components/Navbar";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useProductContext } from "./ProductContext";
 
 function handleRandomNumber() {
   const number = Math.random() * 10;
@@ -25,8 +26,7 @@ export default function Form({ addData }) {
     productPrice: "",
   });
   const navigate = useNavigate()
-
-  const [tableData, SetTableData] = useState([]);
+  const {tableData, addProduct, deleteProduct} = useProductContext();
 
   useEffect(() => {
     alert("Welcome");
@@ -84,7 +84,7 @@ export default function Form({ addData }) {
         productPrice: productPrice,
       };
 
-      SetTableData([...tableData, newData]);
+      addProduct(newData);
 
       setProductName("");
       setProductCategory("");
@@ -99,8 +99,7 @@ export default function Form({ addData }) {
 
   function handleDelete(index) {
     alert("Data Deleted");
-    const newData = tableData.filter((_, i) => i !== index);
-    SetTableData(newData);
+    deleteProduct(index);
   }
 
   return (
@@ -278,6 +277,7 @@ export default function Form({ addData }) {
                   <td>{data.productFreshness}</td>
                   <td>{data.productPrice}</td>
                   <td>
+                    <Link to={`/detail/${index + 1}`} className="btn btn-primary btn-sm me-1" >Detail</Link>
                     <button className="btn btn-danger btn-sm me-1" onClick={() => handleDelete(index)}>
                       Delete
                     </button>
