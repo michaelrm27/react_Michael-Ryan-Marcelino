@@ -140,10 +140,12 @@ export default function Form() {
           <table className="table table-striped-columns" id="tableinput">
             <thead>
               <tr>
-                <th scope="col">No</th>
+              <th scope="col">No</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Category</th>
+                <th scope="col">Product Image</th>
                 <th scope="col">Product Freshness</th>
+                <th scope="col">Product Description</th>
                 <th scope="col">Product Price</th>
                 <th scope="col">Action</th>
               </tr>
@@ -154,7 +156,9 @@ export default function Form() {
                   <td>{index + 1}</td>
                   <td>{data.productName}</td>
                   <td>{data.productCategory}</td>
+                  <td>{data.productImage}</td>
                   <td>{data.productFreshness}</td>
+                  <td>{data.productDesc}</td>
                   <td>{data.productPrice}</td>
                   <td>
                     <Link to={`/detail/${index + 1}`} className="btn btn-primary btn-sm me-1">
