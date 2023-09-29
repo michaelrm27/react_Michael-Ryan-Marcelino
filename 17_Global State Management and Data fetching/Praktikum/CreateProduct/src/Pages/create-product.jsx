@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Navbar from "../Components/Navbar";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useProductContext } from "./ProductContext";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addProduct, deleteProduct, editProduct } from "../../Utils/Redux/reducer/reducer";
 
 const schema = z.object({
   productName: z.string().min(1, { message: "Product Name Field Can't be Empty" }).max(25, { message: "Product name must not exceed 25 character" }),
@@ -23,7 +25,9 @@ function handleRandomNumber() {
 
 export default function Form() {
   const navigate = useNavigate();
-  const { tableData, addProduct, deleteProduct } = useProductContext();
+  const dispatch = useDispatch();
+  const tableData = useSelector((state) => state.product.products);
+  const [editIndex, setEditIndex] = useState(null);
 
   const {
     reset,
@@ -38,14 +42,39 @@ export default function Form() {
     alert("Welcome");
   }, []);
 
-  function handleDelete(index) {
-    alert("Data Deleted");
-    deleteProduct(index);
+  function handleEdit(index) {
+    const productToEdit = tableData[index];
+    setEditIndex(index);
+    reset({
+      productName: productToEdit.productName,
+      productCategory: productToEdit.productCategory,
+      productFreshness: productToEdit.productFreshness,
+      productPrice: productToEdit.productPrice,
+      productImage: productToEdit.productImage,
+      productDesc: productToEdit.productDesc,
+    });
   }
 
   const onSubmit = (data) => {
+    if (editIndex !== null) {
+      dispatch(
+        editProduct({
+          index: editIndex,
+          updateProduct: {
+            productName: data.productName,
+            productCategory: data.productCategory,
+            productFreshness: data.productFreshness,
+            productPrice: data.productPrice,
+            productImage: data.productImage,
+            productDesc: data.productDesc,
+          },
+        })
+      );
+      setEditIndex(null);
+    } else {
+      dispatch(addProduct(data));
+    }
     alert("Form Submitted");
-    addProduct(data);
     reset();
   };
 
@@ -71,9 +100,9 @@ export default function Form() {
               <option selected="" disabled="" value="">
                 Choose...
               </option>
-              <option value="a">a</option>
-              <option value="b">b</option>
-              <option value="c">c</option>
+              <option value="Phone">Phone</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Router">Router</option>
             </select>
             {errors.productCategory?.message && <div className="text-danger">{errors.productCategory?.message}</div>}
           </div>
@@ -92,17 +121,17 @@ export default function Form() {
           <div className="form-check" name="formcheck" id="radio">
             <label className="form-check-label active">
               {" "}
-              <input className="form-check-input" type="radio" name="Freshness" defaultValue="brandnew" {...register("productFreshness")} /> Brand New{" "}
+              <input className="form-check-input" type="radio" name="Freshness" defaultValue="Brand New" {...register("productFreshness")} /> Brand New{" "}
             </label>{" "}
             <br />
             <label className="form-check-label">
               {" "}
-              <input className="form-check-input" type="radio" name="Freshness" defaultValue="secondhand" {...register("productFreshness")} /> Second Hand{" "}
+              <input className="form-check-input" type="radio" name="Freshness" defaultValue="Second Hand" {...register("productFreshness")} /> Second Hand{" "}
             </label>{" "}
             <br />
             <label className="form-check-label">
               {" "}
-              <input className="form-check-input" type="radio" name="Freshness" defaultValue="refurbished" {...register("productFreshness")} /> Refurbished{" "}
+              <input className="form-check-input" type="radio" name="Freshness" defaultValue="Refurbished" {...register("productFreshness")} /> Refurbished{" "}
             </label>
             {errors.productFreshness?.message && <div className="text-danger">{errors.productFreshness?.message}</div>}
           </div>
@@ -164,10 +193,12 @@ export default function Form() {
                     <Link to={`/detail/${index + 1}`} className="btn btn-primary btn-sm me-1">
                       Detail
                     </Link>
-                    <button className="btn btn-danger btn-sm me-1" onClick={() => handleDelete(index)}>
+                    <button className="btn btn-danger btn-sm me-1" onClick={() => dispatch(deleteProduct(index))}>
                       Delete
                     </button>
-                    <button className="btn btn-primary btn-sm">Edit</button>
+                    <button className="btn btn-primary btn-sm" onClick={() => handleEdit(index)}>
+                      Edit
+                    </button>
                   </td>
                 </tr>
               ))}

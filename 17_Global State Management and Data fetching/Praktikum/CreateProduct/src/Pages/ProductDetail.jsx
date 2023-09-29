@@ -1,11 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "./ProductContext";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 export default function Detail() {
   const { id } = useParams();
-  const { tableData } = useProductContext();
-  const product = tableData[id - 1];
+  const product = useSelector((state) => {
+    const index = parseInt(id, 10) - 1;
+    return state.product.products[index];
+  });
+
+  console.log(product);
 
   if (!product) {
     return <div className="justify-content-center text-center">Product Not Found</div>;
