@@ -27,3 +27,6 @@ Untuk melakukan deploy di vercel kita perlu:
 - Pilih Repository dari GitHub kita
 - Deploy dengan Vercell
 - Website kita bisa diakses
+
+# Link Deployment
+**https://react-kelasc-michaelryan.vercel.app/**
