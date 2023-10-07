@@ -29,9 +29,10 @@ export default function Form() {
   const dispatch = useDispatch();
   const formRef = useRef(null);
 
-  const tableData = useSelector((state) => state.product.products);
   const [editIndex, setEditIndex] = useState(null);
   const [dataTable, setDataTable] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedProduct, setEditedProduct] = useState({});
 
   const {
     reset,
@@ -47,16 +48,17 @@ export default function Form() {
   }, []);
 
   useEffect(() => {
-    axios
-      .get("https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products")
-      .then((result) => {
-        setDataTable(result.data);
-        console.log("Table Data", dataTable);
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
+    fetchData();
   }, []);
+
+  async function fetchData() {
+    try {
+      const result = await axios.get("https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products");
+      setDataTable(result.data);
+    } catch (error) {
+      console.log("Error", error.toString());
+    }
+  }
 
   function handleEdit(index) {
     const productToEdit = dataTable[index];
@@ -69,16 +71,19 @@ export default function Form() {
       productImage: productToEdit.productImage,
       productDesc: productToEdit.productDesc,
     });
+    setEditedProduct(productToEdit);
+    setIsEditing(true);
     formRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
   const onSubmit = async (data) => {
     try {
-      if (editIndex !== null) {
-        const url = `https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products/${editIndex + 1}`;
-        axios.put(url, data);
+      if (isEditing) {
+        const url = `https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products/${editedProduct.id}`;
+        const response = await axios.put(url, data);
+        console.log("Response from server:", response.data);
         alert("Data Updated");
-        location.reload();
+        fetchData();
       } else {
         const response = await axios.post("https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products", data);
         console.log("Response from server:", response.data);
@@ -87,6 +92,7 @@ export default function Form() {
       }
       reset();
       setEditIndex(null);
+      setIsEditing(false);
     } catch (error) {
       console.error("Error", error);
     }
@@ -94,10 +100,12 @@ export default function Form() {
 
   async function handleDelete(index) {
     try {
-      const url = `https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products/${index + 1}`;
-      await axios.delete(url);
+      const id = dataTable[index].id;
+      const url = `https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products/${id}`;
+      const response = await axios.delete(url);
+      console.log("Response from server:", response.data);
       alert("Data Deleted");
-      location.reload();
+      fetchData();
     } catch (error) {
       console.log("Error: ", error);
     }
