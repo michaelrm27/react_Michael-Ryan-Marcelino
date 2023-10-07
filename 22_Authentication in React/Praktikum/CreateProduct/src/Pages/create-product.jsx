@@ -29,7 +29,6 @@ export default function Form() {
   const dispatch = useDispatch();
   const formRef = useRef(null);
 
-  const tableData = useSelector((state) => state.product.products);
   const [editIndex, setEditIndex] = useState(null);
   const [dataTable, setDataTable] = useState([]);
 
@@ -77,7 +76,8 @@ export default function Form() {
     try {
       if (editIndex !== null) {
         const url = `https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products/${editIndex + 1}`;
-        await axios.put(url, data);
+        const response = await axios.put(url, data);
+        console.log(response)
         alert("Data Updated");
         fetchData();
       } else {
@@ -96,7 +96,8 @@ export default function Form() {
   async function handleDelete(index) {
     try {
       const url = `https://651a7c97340309952f0d5fdb.mockapi.io/api/v1/products/${index + 1}`;
-      await axios.delete(url);
+      const response = await axios.delete(url);
+      console.log(response)
       alert("Data Deleted");
       fetchData();
     } catch (error) {

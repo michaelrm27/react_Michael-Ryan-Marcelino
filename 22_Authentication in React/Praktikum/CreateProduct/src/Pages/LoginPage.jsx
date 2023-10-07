@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -17,12 +19,14 @@ export default function LoginPage() {
 
     if (user && user.username === username && user.password === password) {
       localStorage.setItem("isLoggedIn", true);
+      navigate("/products")
       reset();
     } else if (
         username === dummyuser.username && 
         password === dummyuser.password) {
       localStorage.setItem("user", JSON.stringify(dummyuser));
       localStorage.setItem("isLoggedIn", true);
+      navigate("/products")
       reset();
     } else {
       setError("Invalid Username and Password");

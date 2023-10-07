@@ -9,7 +9,7 @@ export default function Router() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Form />,
+      element: <LoginPage />,
     },
     {
       path: "/detail/:id",
@@ -20,8 +20,8 @@ export default function Router() {
       element: <Page />,
     },
     {
-      path: "/login",
-      element: <LoginPage/>
+      path: "/products",
+      element: <Form />
     },
     {
       path: "*",
