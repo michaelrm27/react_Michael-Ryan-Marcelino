@@ -1,11 +1,25 @@
-import React from "react";
-import Swal from 'sweetalert2'
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 export default function Contact() {
+  const [input, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    comments: "",
+  });
 
-    function handleSubmit(e){
-        e.preventDefault()
-        Swal.fire('Submitted')
-    }
+  function handleInputChange(e) {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    Swal.fire("Submmited", `First Name: ${input.firstName}`, `Last Name: ${input.lastName}`, `Email: ${input.email}`, `Comments: ${input.comments}`);
+  }
 
   return (
     <div>
@@ -25,9 +39,12 @@ export default function Contact() {
                     First Name
                   </label>
                   <input
+                    name="firstName"
+                    value={input.firstName}
                     type="text"
                     className="form-control"
                     id="inputname"
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="col-6">
@@ -38,6 +55,9 @@ export default function Contact() {
                     Last Name
                   </label>
                   <input
+                    name="lastName"
+                    value={input.lastName}
+                    onChange={handleInputChange}
                     type="text"
                     className="form-control"
                     id="inputname"
@@ -52,6 +72,9 @@ export default function Contact() {
                   Email address
                 </label>
                 <input
+                  name="email"
+                  value={input.email}
+                  onChange={handleInputChange}
                   type="email"
                   className="form-control"
                   id="exampleInputEmail1"
@@ -66,6 +89,9 @@ export default function Contact() {
               </div>
               <div className="form-floating mb-3">
                 <textarea
+                  name="comments"
+                  value={input.comments}
+                  onChange={handleInputChange}
                   className="form-control"
                   placeholder="Leave a comment here"
                   id="floatingTextarea"
